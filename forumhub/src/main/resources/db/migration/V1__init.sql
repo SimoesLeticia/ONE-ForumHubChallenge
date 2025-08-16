@@ -1,0 +1,18 @@
+-- Flyway V1: estrutura inicial
+CREATE TABLE IF NOT EXISTS users (
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS topics (
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    course VARCHAR(100) NOT NULL,
+    CONSTRAINT uk_topic_title_message UNIQUE (title, message)
+) ENGINE=InnoDB;
